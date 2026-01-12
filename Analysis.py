@@ -3,8 +3,11 @@ import pandas as pd
 
 import glob
 
-df = pd.read_csv("api_data_aadhar_biometric_0_500000.csv")
+# get all csv files in the folder
+csv_files = glob.glob("api_data_aadhar_biometric/*.csv")
 
+# read and combine
+df = pd.concat((pd.read_csv(file) for file in csv_files), ignore_index=True)
 df.head()
 
 df.shape
